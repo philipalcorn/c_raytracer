@@ -29,3 +29,4 @@ $(BUILD_DIR):
 # Cleanup
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET)
+	rm output.ppm
