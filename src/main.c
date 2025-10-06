@@ -9,8 +9,8 @@ int main ()
 	printf("Hello, World\n");
 
 
-	int width = 200;
-	int height = 200;
+	int width = 1000;
+	int height = 1000;
 	// times three for three color values per pixel
 	unsigned char* framebuffer = malloc(width * height * 3);
 		

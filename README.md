@@ -22,7 +22,7 @@ This will:
 
 To clean up compiled files, run `make clean`.
 
-After compiling, run `./raytracer`. You will get an output file called `output.ppm` which can be viewed on linux with `feh output.ppm` or can be converted to .png with `magick output.ppm output.png`.
+After compiling, run `./raytracer`. You will get an output file called `output.ppm` which can be viewed on linux with `feh output.ppm &` or can be converted to .png with `magick output.ppm output.png`.
 
 
 
