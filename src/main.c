@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 #include "vec3.h"
+#include "color.h"
 #include "write_ppm.h"
 
 int main () 
@@ -25,20 +26,22 @@ int main ()
 	{
 		for (int i=0; i< width; i++) 
 		{
-			int index = (j*width + i) * 3;
-
-			framebuffer[index + 0] = (unsigned char) (255.99 * (float)i/width);
-			framebuffer[index + 1] = (unsigned char) (255.99 * (float)j/height);
-			framebuffer[index + 2] = 128;
+			int index = 3 * (j*width + i);
+			// colors the red and green based on x and y position.
+			vec3 color = {	(float)(i)/(float)(width) ,
+							(float)(j)/(float)(height),
+							sqrt(i*i + j*j)/sqrt(width*width+height*height) };
+			write_color(framebuffer, index, color);
 		}
 	}
-
+	printf("Writing file...\n");
 	// Writing the framebuffer to a file
 	if (!write_ppm("output.ppm", framebuffer, width, height)) 
 	{
 		perror("Error: Failed to write to image!");
 		exit(1);
 	}
+	printf("Done.\n");
 	free(framebuffer);
 
 	return 0;
