@@ -12,7 +12,7 @@ vec3 vec3_sub(vec3 a, vec3 b)
 	return (vec3) { a.x-b.x, a.y-b.y, a.z-b.z };
 } 
 
-vec3 vec3_multiple(vec3 a, double b) 
+vec3 vec3_multiply(vec3 a, double b) 
 {
 	return (vec3) { a.x*b, a.y*b, a.z*b };
 } 
