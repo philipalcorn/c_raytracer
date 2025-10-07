@@ -12,5 +12,5 @@ vec3 ray_at_t(ray r, double t)
 	// A = Ray origin
 	// b = Ray direction
 	// t is the parameter we pass.
-	return (vec3) (vec3_add(r.origin, vec3_multiply(r.direction, t)));
+	return (vec3_add(r.origin, vec3_multiply(r.direction, t)));
 }
