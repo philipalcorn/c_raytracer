@@ -5,7 +5,7 @@
 #include "ray.h"
 #include "color.h"
 #include "write_ppm.h"
-
+#include <stdbool.h>
 /* Here I define the viewing direction as follows:
  * The camera center will be at 0,0,0. This will be where all rays originate.
  * The y-axis will point up.
@@ -18,10 +18,28 @@
  *
  * */
 
+
+bool hit_sphere(vec3 center, float radius, ray r) 
+{
+	vec3 origin_to_center = vec3_subtract(center,r.origin);
+	float a = vec3_dot(r.direction, r.direction);
+	float b = 2.0f * vec3_dot(r.direction, origin_to_center);
+	float c = vec3_dot(origin_to_center, origin_to_center) - radius * radius;
+	float discriminant = b*b - 4*a*c;
+	return (discriminant >= 0);
+
+}
+
 // Here we use the formula for linearly scaling 0 < a < 1.
 // blended_value = (1-a)*start_value + a * end_value
 vec3 ray_color(const ray r) 
 {
+
+	if ( hit_sphere((vec3){0,0, 1}, 0.5, r)) 
+	{
+		return (vec3) {1,0,0};
+	}
+	
 	vec3 unit_direction = vec3_normalize(r.direction);
 	float a = 0.5*(unit_direction.y +1.0);
 	return vec3_add(vec3_multiply( (vec3){1.0, 1.0, 1.0}, 1-a ),
@@ -92,7 +110,7 @@ int main ()
 			vec3 pixel_x = vec3_multiply(pixel_delta_x, i);
 			vec3 pixel_y = vec3_multiply(pixel_delta_y, j);
 			vec3 pixel_center = vec3_add(pixel_top_left, pixel_x);
-			pixel_center = vec3_add(pixel_top_left, pixel_y);
+			pixel_center = vec3_add(pixel_center, pixel_y);
 			
 			vec3 ray_direction = vec3_subtract(pixel_center, camera_center);
 
