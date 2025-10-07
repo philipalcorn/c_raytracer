@@ -1,6 +1,6 @@
 # C Raytracer
 
-A simple raytracer written in pure C. Inspired by *Ray tracing in One Weeken*.
+A simple raytracer written in pure C. Inspired by *Ray tracing in One Weekend*.
 Outputs rendered images as binary `.ppm` files.
 
 ---
@@ -34,6 +34,10 @@ To clean up compiled files, run `make clean`.
 
 After compiling, run `./raytracer`. You will get an output file called `output.ppm` which can be viewed on linux with `feh output.ppm &` or can be converted to .png with `magick output.ppm output.png`.
 
+## Thanks to the following sites:
 
+Raytracing in One Weekend:
+https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
-
+Scatch a Pixel's Triangle rendering site:
+https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/why-are-triangles-useful.html
