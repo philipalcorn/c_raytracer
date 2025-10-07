@@ -7,7 +7,17 @@ Outputs rendered images as binary `.ppm` files.
 
 ## Overview
 
-The goal for this project is to reimplement and expand on the concepts covered in *Raytracing in One Weekend* in pure C. 
+The main goal of this project is to reimplement and expand on the concepts covered in *Raytracing in One Weekend*.
+
+Additionally, I would like to the following:
+- Implement everything in pure C 
+- Add a sort of triangle ray collission algorithm
+- Accelerate with CUDA where possible
+
+I would like to be able to the ability to read a .stl file, but that's a future project I'm not sure I'll have time for.
+
+I don't currently have any plans to implement any true graphics programming such as OpenGL or Vulkan.
+
 
 ## Building and Running
 
