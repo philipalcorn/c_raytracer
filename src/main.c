@@ -40,12 +40,13 @@ float hit_sphere(vec3 center, float radius, ray r)
 // blended_value = (1-a)*start_value + a * end_value
 vec3 ray_color(const ray r) 
 {
+	vec3 sphere_pos = {0,0,1};
 	// check if we hit a sphere at (0,0,1), right in front of the camera; 
-	float t = hit_sphere( (vec3){0,0,1}, 0.5, r);
+	float t = hit_sphere( sphere_pos, 0.5, r);
 
 	if(t>0) 
 	{
-		vec3 N = vec3_normalize(vec3_subtract(ray_at_t(r, t), (vec3) {0,0,1}));
+		vec3 N = vec3_normalize(vec3_subtract(ray_at_t(r, t), sphere_pos));
 		return vec3_multiply((vec3) {N.x+1, N.y+1, N.z+1}, 0.5);
 	}
 	
