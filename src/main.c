@@ -18,10 +18,10 @@
 
 float hit_sphere(vec3 center, float radius, ray r) 
 {
-	vec3 origin_to_center = vec3_subtract(r.origin,center);
+	vec3 oc = vec3_subtract(r.origin,center);
 	float a = vec3_dot(r.direction, r.direction);
-	float b = 2.0f * vec3_dot(r.direction, origin_to_center);
-	float c = vec3_dot(origin_to_center, origin_to_center) - radius * radius;
+	float b = 2.0f * vec3_dot(r.direction, oc);
+	float c = vec3_dot(oc, oc) - radius * radius;
 	float discriminant = b*b - 4*a*c;
 
 	if(discriminant < 0) 
