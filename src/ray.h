@@ -11,6 +11,6 @@ typedef struct
 } ray;
 
 ray ray_initialize (vec3 o, vec3 d);
-vec3 ray_at_t(ray r, double t);
+vec3 ray_at_t(ray r, float t);
 
 #endif

@@ -6,27 +6,33 @@
 #include "color.h"
 #include "write_ppm.h"
 #include <stdbool.h>
-/* Here I define the viewing direction as follows:
+/* 
+ * Here I define the viewing direction as follows:
  * The camera center will be at 0,0,0. This will be where all rays originate.
  * The y-axis will point up.
  * The x-axis will point to the right.
  * The positive z-axis will point out from the camera, into the viewing direction.
  *
- *
- *
- *
- *
  * */
 
 
-bool hit_sphere(vec3 center, float radius, ray r) 
+float hit_sphere(vec3 center, float radius, ray r) 
 {
-	vec3 origin_to_center = vec3_subtract(center,r.origin);
+	vec3 origin_to_center = vec3_subtract(r.origin,center);
 	float a = vec3_dot(r.direction, r.direction);
 	float b = 2.0f * vec3_dot(r.direction, origin_to_center);
 	float c = vec3_dot(origin_to_center, origin_to_center) - radius * radius;
 	float discriminant = b*b - 4*a*c;
-	return (discriminant >= 0);
+
+	if(discriminant < 0) 
+	{
+		return -1.0;
+	} else
+	{
+		// Return the closer t
+		return (-b - sqrt(discriminant)) / (2*a);
+	}
+
 
 }
 
@@ -34,10 +40,13 @@ bool hit_sphere(vec3 center, float radius, ray r)
 // blended_value = (1-a)*start_value + a * end_value
 vec3 ray_color(const ray r) 
 {
+	// check if we hit a sphere at (0,0,1), right in front of the camera; 
+	float t = hit_sphere( (vec3){0,0,1}, 0.5, r);
 
-	if ( hit_sphere((vec3){0,0, 1}, 0.5, r)) 
+	if(t>0) 
 	{
-		return (vec3) {1,0,0};
+		vec3 N = vec3_normalize(vec3_subtract(ray_at_t(r, t), (vec3) {0,0,1}));
+		return vec3_multiply((vec3) {N.x+1, N.y+1, N.z+1}, 0.5);
 	}
 	
 	vec3 unit_direction = vec3_normalize(r.direction);

@@ -5,7 +5,7 @@ ray ray_initialize(vec3 o, vec3 d)
 	return (ray){o, d};
 }
 
-vec3 ray_at_t(ray r, double t) 
+vec3 ray_at_t(ray r, float t) 
 {
 	// Returning the point (vec3) at P = A+t*b
 	// P = Point
